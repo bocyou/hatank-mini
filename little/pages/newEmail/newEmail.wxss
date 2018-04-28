@@ -1,0 +1,21 @@
+/* pages/newUserName/newUserName.wxss */
+ .userName::after{
+   content: '\e649';
+   color:#8B572A;
+   font-size: 80rpx;
+ }
+ .code::after{
+   content: '\e7fc';
+   color:#8B572A;
+   font-size: 80rpx;
+}
+.picCode{
+  width:240rpx;
+  height: 90rpx;
+   margin-right: -18rpx; 
+}
+.email::after{
+   content: '\e604';
+   color:#8B572A;
+   font-size: 80rpx;
+}

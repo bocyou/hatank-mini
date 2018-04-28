@@ -1,0 +1,6 @@
+<!--pages/success/success.wxml-->
+<view class='success flex flex_ac flex_ct'>
+  <icon type='success' size='72'></icon>
+  <text>{{tips}}</text>
+  <button size='mini' type='primary' bindtap='goTo'>返回</button>
+</view>

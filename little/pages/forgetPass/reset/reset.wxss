@@ -1,0 +1,2 @@
+/* pages/forgetPass/vertify/reset.wxss */
+@import '../../register/register.wxss';

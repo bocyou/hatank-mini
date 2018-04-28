@@ -1,0 +1,99 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"qcloudRoot": "https://www.hatank.com/",
+	"compileType": "miniprogram",
+	"libVersion": "2.0.0",
+	"appid": "wxaf9337a65519fad4",
+	"projectname": "little",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "login",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "register",
+					"pathName": "pages/register/register",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "byPass",
+					"pathName": "pages/newPhone/byPass/byPass",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "settings",
+					"pathName": "pages/settings/settings",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "login",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "list",
+					"pathName": "pages/list/list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "new",
+					"pathName": "pages/new/new",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "new",
+					"pathName": "pages/new/new",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "mine",
+					"pathName": "pages/mine/mine",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "detail",
+					"pathName": "pages/detail/detail",
+					"query": ""
+				}
+			]
+		}
+	}
+}

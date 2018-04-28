@@ -1,0 +1,43 @@
+<!--pages/focus/focus.wxml-->
+<view class='mine focus clearfix'>
+  <view class='mine-banner'>
+    <view class='mine-banner-img'></view>
+    <view class='flex flex_ac base-info'>
+      <view class='flex flex_ac flex_ct category-icon'>
+        <image class='user-img' src='{{userImg?userImg:"../../icons/user-ori.png"}}'></image>
+        <text>{{nickName?nickName:'无名氏'}}</text>
+      </view>
+      <view class='userInfo'>
+         <text class='bc'>关注：20</text> 
+        <text class='bc'>发布数：{{static.counts}}</text>
+        <text class='bc'>关注量：{{static.focus}}</text>
+      </view>
+      <view bindtap='focus' data-id='add' style='width:152rpx' class='add-focus flex flex_ac' wx:if="{{!focused}}">
+         <button class='simulate-block iconfont focus-icon gray'></button>加关注
+      </view>
+      <button bindtap='unfocus' data-id='cancel' size='mini' style='margin:0;padding:0 8px;width:152rpx' class='add-focus flex flex_ac' wx:if="{{focused}}">已关注</button>
+    </view>
+  </view>
+  <view class='mine-content'>
+    <view wx:for="{{categorys}}" wx:key="this">
+      <navigator url='../detail/detail?id={{item._id}}' class='swiper-item-content fl'>
+          <image src='{{item.albums[0].bannerImgUrl==undefined?item.albums[0]:item.albums[0].bannerImgUrl}}'></image>
+        <view class='swiper-item-content-bg'></view>
+        <view class='swiper-item-content-txt flex flex_ac'>
+          <view class='swiper-item-content-txt-detail'>
+            <text class='title'>{{item.title}}</text>
+            <view class='title-intro'>
+              <text>{{item.scored}}分</text>
+              <text>{{item.cookied}}人收藏</text>
+              <text>{{item.agreed}}人赞过</text>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>
+<view class="refresh-block flex flex_ct" wx:if="{{loading}}" style='margin:28rpx;'>
+  <image animation="{{refreshAnimation}}" src='../../icons/loading.png' style='width:20px;height:20px;'></image>
+</view>
+<text class='tc bc gray last' wx:if="{{last}}">-------已经到底了-------</text>

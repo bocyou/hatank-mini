@@ -1,0 +1,23 @@
+ /* pages/login/login.wxss  */
+ .userName::after{
+   content: '\e649';
+   color:#8B572A;
+   font-size: 80rpx;
+ }
+.userPass::after{
+   content: '\e62d';
+   color:#8B572A;
+   font-size: 80rpx;
+ }
+ .login-area .new{
+  margin: 10rpx auto;
+ }
+.phone::after{
+  content: '\e629';
+  color:white;
+  font-size: 80rpx; 
+ }
+.weixin::after{
+   content: '\e623';
+   color:white;
+}

@@ -1,0 +1,45 @@
+<!--pages/divcovery/divcovery.wxml-->
+<view class='discovery'>
+  <view class='discovery-header first'>我的关注</view>
+  <view wx:if="{{noFocusData}}" class="noMoreData iconfont flex flex_ac flex_ct gray">
+    <text>您还没有关注菜谱</text>
+</view>
+  <view class='discovery-container' wx:key="this" wx:for="{{focus}}">
+    <view class='discovery-content-header flex flex_ac'>
+      <view class='discovery-content-title'>
+        <text class='bc main-title'>{{item._id}}</text>
+        <view class='bc sub-title'>
+          <text wx:for="{{item.result}}" wx:key="this" wx:for-item="intros">{{intros.title}} , </text>
+        </view>
+      </view>
+      <navigator style='display:inline-block;' url='../focus/focus?focusId={{item.result[0].userId}}'>
+        <button class='simulate-block iconfont arrow-right'></button>
+      </navigator>
+    </view>
+    <view class='discovery-content content'>
+      <scroll-view scroll-x bindscrolltolower="lower">
+        <view wx:key="this" wx:for="{{item.result}}" wx:for-item="svitem" class='scroll-view-item'>
+          <navigator url='../detail/detail?id={{svitem._id}}'>
+              <image  src='{{svitem.albums[0].bannerImgUrl==undefined?svitem.albums[0]:svitem.albums[0].bannerImgUrl}}'></image>
+            <text class='bc tc'>{{svitem.title}}</text>
+          </navigator>
+        </view>
+        <view class='scroll-view-item more'>
+            <button data-focusId='{{item.result[0].userId}}' class='simulate-block iconfont scroll-view-item-more' bindtap='toFocus'></button>
+        </view>
+      </scroll-view>
+    </view> 
+  </view>
+  <view class='discovery-header second'>发现更多</view>
+  <view class='discovery-container find-more flex flex_sa'>
+      <view class='scroll-view-item' wx:for="{{tunes}}" wx:key="this">
+        <navigator url='../focus/focus?focusId={{item._id}}'>
+          <image src='{{item.img}}'></image>
+          <text class='bc tc'>{{item.nickName}}</text>
+        </navigator>
+      </view>
+  </view>
+  <view class='change flex flex_ac flex_ct' bindtap='changeOne'>
+    <button class='simulate-block iconfont tunes'></button>换一批
+  </view>
+</view>

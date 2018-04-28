@@ -1,0 +1,30 @@
+<!--pages/newEmail/newEmail.wxml-->
+<view class='common-bg'>
+  <image src='https://hatank.com/images/common_bg.png'></image>
+</view>
+<view class='login-area'>
+  <scroll-view scroll-y>
+    <view class='login-area-view'>
+      <view class='logo flex flex_ct flex_ac'>
+        <image class='circle' src='https://hatank.com/images/1.png'></image>
+        <text>每天一菜，多味生活</text>
+        <text>www.hatank.com</text>
+      </view>
+      <form class='login-form flex_ac' bindsubmit='updateEmail' name="login">
+         <view class='login-form-item flex flex_ac'>
+          <button class='simulate-block iconfont email'></button>
+          <input name="email" bindinput='email' type='text' placeholder='请输入您的新邮箱'></input>
+          <icon type='{{emailS?"success":"warn"}}' class='icon-tips'></icon>
+        </view>
+        <view class='login-form-item flex flex_ac'>
+          <button class='simulate-block iconfont code'></button>
+          <input maxlength='4' name="picCode" bindinput='picCodeV' type='text' placeholder='请输入图形码'></input>
+          <image bindtap='picCode' class='picCode' src='{{picCode}}'></image>
+        </view>
+        <view class='btn logins clearfix'>
+            <button form-type='submit' disabled='{{!emailS||!picCodeS}}' class='new fl'>确定修改</button>
+        </view>
+      </form>
+    </view> 
+  </scroll-view>
+</view>

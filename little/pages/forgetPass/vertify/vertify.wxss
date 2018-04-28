@@ -1,0 +1,23 @@
+/* pages/forgetPass/forgetPass.wxss */
+.reset-tips{
+  margin-top: 36rpx;
+  color: #f5f5f5;
+}
+.reset-tips-content{
+  text-indent:16rpx;
+}
+.code::after{
+   content: '\e7fc';
+   color:#8B572A;
+   font-size: 80rpx;
+}
+.email::after{
+   content: '\e604';
+   color:#8B572A;
+   font-size: 80rpx;
+}
+.phone-reset::after{
+  content: '\e629';
+  color:#8B572A;
+  font-size: 90rpx;
+ }

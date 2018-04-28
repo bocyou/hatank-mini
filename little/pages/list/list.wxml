@@ -1,0 +1,111 @@
+<!--pages/list/list.wxml-->
+<view class='list flex flex_ac flex_ct'>
+  <view class='flex flex_ac'>
+    <picker class='selPicker iconfont sel flex flex_ac'  range='{{selects}}' range-key='text' value='{{currSel}}' bindchange='changeSel'>{{selects[currSel].text}}</picker>
+    <input placeholder='请输入搜索的内容(如:红烧)' value='{{searchValue}}' bindinput='getSearchValue' placeholder-style='color:#9B9B9B;'></input>
+    <button class='simulate-block iconfont search-active' bindtap='searchBtn'></button>
+  </view> 
+</view>
+<view class='list-menu flex'>
+    <view class='slide-line' style='left:{{slideTo}}rpx'></view>
+    <text class='tc list-menu-item {{active==0?"active":""}}' data-loaded='{{default==1?true:false}}' data-default='{{default}}' bindtap='activeInforMenus' data-index='0'>综合</text>
+    <text class='tc list-menu-item {{active==1?"active":""}}' data-loaded='{{scored==1?true:false}}' data-scored='{{scored}}' bindtap='activeInforMenus' data-index='1'>评分</text>
+    <text class='tc list-menu-item {{active==2?"active":""}}' data-loaded='{{cooked==1?true:false}}' data-cooked='{{cooked}}' bindtap='activeInforMenus' data-index='2'>赞过最多</text>
+</view> 
+<view class='list-content'>
+  <swiper bindchange='swiperTo' current='{{active}}'>
+    <swiper-item>
+      <scroll-view class='topic' scroll-y style='height:100%;' scroll-top="{{defaultReset}}" enable-back-to-top="true" bindscrolltolower="reachDefaultBottom">
+        <view wx:for="{{defaultData}}" wx:key="this"> 
+          <navigator url='../detail/detail?id={{item._id}}&focusId={{item.userId}}&imgUrl={{item.imgUrl}}&nickName={{item.nickName}}' class='topic-item flex flex_ac flex_ct'>
+             <image lazy-load="true" src='{{item.albums[0].bannerImgUrl==undefined?item.albums[0]:item.albums[0].bannerImgUrl}}'></image>
+            <view class='topic-item-detail'>
+              <text class='bc'>{{item.title}}</text>
+              <text class='bc info'>{{item.tags}}</text>
+              <view>
+              <!-- <navigator url='../focus/focus?focusId={{item.userId}}'> -->
+                  <view style='padding-left:8rpx;' class='focus-item-user flex flex_ac' wx:if="{{item.imgUrl&&item.nickName}}">
+                    <image src='{{item.imgUrl}}' style='margin:10rpx;width:42rpx;height:42rpx;border-radius:50%'></image>
+                    <text>{{item.nickName}}</text>
+                  </view>
+              <!-- </navigator> -->
+              </view>
+              <view>
+                  <text class='browser'>{{item.cookied}}人收藏</text>
+                  <text class='score'>{{item.scored}}分</text>
+                  <text class='cookie'>{{item.agreed}}人赞过</text>
+              </view>
+              <button class='simulate-block iconfont arrow-right gray'></button>
+            </view>
+          </navigator>
+        </view>
+        <view class="refresh-block flex flex_ct" wx:if="{{loading}}" style='margin:28rpx;'>
+          <image animation="{{refreshAnimation}}" src='../../icons/loading.png' style='width:20px;height:20px;'></image>
+        </view>
+        <text class='tc bc gray last' wx:if="{{defaultBottom}}">-------已经到底了-------</text>
+      </scroll-view> 
+    </swiper-item>
+    <swiper-item>
+      <scroll-view class='topic' scroll-y style='height:100%;' scroll-top="{{scoredReset}}" enable-back-to-top="true" bindscrolltolower="reachScoredBottom">
+        <view wx:for="{{scoredData}}" wx:key="this">
+          <navigator url='../detail/detail?id={{item._id}}&focusId={{item.userId}}' class='topic-item flex flex_ac flex_ct'>
+              <image lazy-load="true" src='{{item.albums[0].bannerImgUrl==undefined?item.albums[0]:item.albums[0].bannerImgUrl}}'></image>
+            <view class='topic-item-detail'>
+              <text class='bc'>{{item.title}}</text>
+              <text class='bc info'>{{item.tags}}</text>
+               <view>
+              <!-- <navigator url='../focus/focus?focusId={{item.userId}}'> -->
+                  <view style='padding-left:8rpx;' class='focus-item-user flex flex_ac' wx:if="{{item.imgUrl&&item.nickName}}">
+                    <image src='{{item.imgUrl}}' style='margin:10rpx;width:42rpx;height:42rpx;border-radius:50%'></image>
+                    <text>{{item.nickName}}</text>
+                  </view>
+               </view>
+              <!-- </navigator> -->
+              <view>
+                <text class='score'>{{item.scored}}分</text>
+                <text class='cookie'>{{item.agreed}}人赞过</text>
+                <text class='browser'>{{item.cookied}}人收藏</text>
+              </view>
+              <button class='simulate-block iconfont arrow-right gray'></button>
+            </view>
+          </navigator>
+        </view>
+        <view class="refresh-block flex flex_ct" wx:if="{{loading}}" style='margin:28rpx;'>
+          <image animation="{{refreshAnimation}}" src='../../icons/loading.png' style='width:20px;height:20px;'></image>
+        </view>
+        <text class='tc bc gray last' wx:if="{{scoredBottom}}">-------已经到底了-------</text>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view class='topic' scroll-y style='height:100%;' scroll-top="{{cookedReset}}" enable-back-to-top="true" bindscrolltolower="reachCookedBottom">
+        <view wx:for="{{cookedData}}" wx:key="this">
+          <navigator url='../detail/detail?id={{item._id}}&focusId={{item.userId}}' class='topic-item flex flex_ac flex_ct'>
+              <image lazy-load="true" src='{{item.albums[0].bannerImgUrl==undefined?item.albums[0]:item.albums[0].bannerImgUrl}}'></image>
+            <view class='topic-item-detail'>
+              <text class='bc'>{{item.title}}</text>
+              <text class='bc info'>{{item.tags}}</text>
+               <view>
+              <!-- <navigator url='../focus/focus?focusId={{item.userId}}'> -->
+                  <view style='padding-left:8rpx;' class='focus-item-user flex flex_ac' wx:if="{{item.imgUrl&&item.nickName}}">
+                    <image src='{{item.imgUrl}}' style='margin:10rpx;width:42rpx;height:42rpx;border-radius:50%'></image>
+                    <text>{{item.nickName}}</text>
+                  </view>
+              </view>
+              <!-- </navigator> -->
+              <view>
+                  <text class='cookie'>{{item.agreed}}人赞过</text>
+                  <text class='score'>{{item.scored}}分</text>
+                  <text class='browser'>{{item.cookied}}人收藏</text>
+              </view>
+              <button class='simulate-block iconfont arrow-right gray'></button>
+            </view>
+          </navigator>
+        </view>
+        <view class="refresh-block flex flex_ct" wx:if="{{loading}}" style='margin:28rpx;'>
+          <image animation="{{refreshAnimation}}" src='../../icons/loading.png' style='width:20px;height:20px;'></image>
+        </view>
+        <text class='tc bc gray last' wx:if="{{cookedBottom}}">-------已经到底了-------</text>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>

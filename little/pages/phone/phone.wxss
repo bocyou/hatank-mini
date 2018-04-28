@@ -1,0 +1,26 @@
+ /* pages/login/login.wxss  */
+  @import '../login/login.wxss';
+.code::after{
+   content: '\e7fc';
+   color:#8B572A;
+   font-size: 80rpx;
+}
+.email::after{
+   content: '\e604';
+   color:#8B572A;
+   font-size: 80rpx;
+}
+.phone-register::after{
+  content: '\e629';
+  color:#8B572A;
+  font-size: 90rpx;
+ }
+ .reset-tips{
+   padding: 50rpx 20rpx;
+ }
+ .reset-tips-content{
+   text-indent: 1em;
+ }
+ .userName::after{
+   color: white;
+ }

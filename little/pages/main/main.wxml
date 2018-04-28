@@ -1,0 +1,106 @@
+<!--main/main.wxml-->
+<view class='main {{searchShow?"active":""}}'>
+  <view class='main-baner'>
+    <image src='https://hatank.com/images/banner.png'></image>
+  </view>
+  <view class='main-search flex flex_ac flex_ct'>
+    <image src='../../icons/fork-search.png' class='fork-search' bindtap='searchMask'></image>
+  </view>
+  <view class='content'>
+    <text class='content-type green bc tc'>热门推荐</text>
+    <scroll-view scroll-x bindscrolltolower="lower">
+      <view wx:key="this" wx:for="{{hot}}" class='scroll-view-item'>
+        <navigator url='../detail/detail?id={{item._id}}'>
+          <image lazy-load="true" src='{{item.albums[0].bannerImgUrl==undefined?item.albums[0]:item.albums[0].bannerImgUrl}}'></image>
+          <text class='bc tc'>{{item.title}}</text>
+        </navigator>
+      </view>
+      <view class='scroll-view-item more'>
+          <button class='simulate-block iconfont scroll-view-item-more' bindtap='toList'></button>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='menu flex flex_ct'>
+    <button class='btn-day' bindtap='luck'>幸运美食</button>
+    <navigator url='../menus/menus'><button class='btn-all'>分类大全</button></navigator>
+  </view>
+  <view class='content'>
+    <text class='content-type brown bc tc'>最新上架</text>
+    <scroll-view scroll-x bindscrolltolower="lower">
+      <view wx:key="this" wx:for="{{new}}" class='scroll-view-item' id='1'>
+        <navigator url='../detail/detail?id={{item._id}}'>
+          <image lazy-load="true" src='{{item.albums[0].bannerImgUrl==undefined?item.albums[0]:item.albums[0].bannerImgUrl}}'></image>
+          <text class='bc tc'>{{item.title}}</text>
+        </navigator>
+      </view>
+      <view class='scroll-view-item more'>
+          <button class='simulate-block iconfont scroll-view-item-more' bindtap='toList'></button>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='content'>
+    <text class='content-type purple bc tc'>您关注的</text>
+    <view wx:if="{{noFocusData}}" class="noMoreData iconfont flex flex_ac flex_ct gray">
+        <text>您还没有关注菜谱</text>
+    </view>
+    <view class='focus-item' wx:key="this" wx:for="{{focus}}">
+       <navigator url='../detail/detail?id={{item._id}}' style='height:420rpx;'> 
+        <image lazy-load="true" src='{{item.albums[0].bannerImgUrl==undefined?item.albums[0]:item.albums[0].bannerImgUrl}}'></image>
+        <view class='focus-item-txt-bg flex flex_ct flex_ac'>
+          <view class='focus-item-detail'>
+            <text class='bc title'>{{item.title}}</text>
+            <view>
+              <text class='score'>{{item.scored}}分</text>
+              <text class='cookie'>{{item.cookied}}人收藏</text>
+              <text class='cooked'>{{item.agreed}}人做过</text>
+            </view>
+          </view>
+          <navigator url='../focus/focus?cid={{item.cid+"&focusId="+item.focusId}}'>
+              <view class='focus-item-user flex flex_ac flex_ct' wx:if="{{item.img&&item.nickName}}">
+                <image src='{{item.img}}'></image>
+                <text>{{item.nickName}}</text>
+              </view>
+          </navigator>
+        </view>
+        <!-- <view class='focus-item-bg'></view> -->
+       </navigator> 
+    </view>
+  </view>
+  <view class='content' wx:if="{{topics}}">
+    <text class='content-type blue bc tc'>#话题推荐#</text>
+    <view class='topic'>
+    <view wx:for="{{topics}}" wx:key="this">
+      <navigator url='' class='topic-item flex flex_ac flex_ct'>
+        <image lazy-load="true" src='../../images/{{item.url}}'></image>
+        <view class='topic-item-detail'>
+          <text class='bc'>{{item.title}}</text>
+          <text class='bc info'>{{item.know}}</text>
+          <view>
+            <text class='browser'>{{item.history}}人浏览</text>
+            <text class='cookie'>{{item.cookie}}人收藏</text>
+          </view>
+          <button class='simulate-block iconfont arrow-right gray'></button>
+        </view>
+      </navigator>
+     </view>
+   </view>
+  </view>
+  <view class='searchMask {{searchShow?"searchShow":""}}' data-close="1">
+   <view class='searchMaskContent'>
+    <view class='main-search flex flex_ac flex_ct'>
+      <view class='flex flex_ac'>
+        <input placeholder='请输入您要搜索的内容(如:红烧排骨)' value='{{searchValue}}' bindinput='getSearchValue' placeholder-style='color:#9B9B9B;'></input>
+        <button class='simulate-block iconfont search-active' bindtap='toSearch'></button>
+      </view> 
+      <button class='cancel' bindtap='closeMask'>取消</button>
+    </view>
+    <view class='search-history clearfix'>
+        <button class='search-history-item' wx:key="this" wx:for="{{history}}" data-val="{{item.title}}" data-id="{{item.id}}" bindtap='toQuery'>{{item.title}}</button>
+    </view>
+   </view>
+  </view>
+</view> 
+<view class="refresh-block flex flex_ct" wx:if="{{loading}}" style='margin:28rpx;'>
+  <image animation="{{refreshAnimation}}" src='../../icons/loading.png' style='width:20px;height:20px;'></image>
+</view>
+<text class='tc bc gray last' wx:if="{{mainBottom&&!noFocusData}}">-------已经到底了-------</text>

@@ -1,0 +1,37 @@
+<!--pages/newPhone/oriPhone/oriPhone.wxml-->
+<view class='common-bg'>
+  <image src='https://hatank.com/images/common_bg.png'></image>
+</view>
+<view class='login-area resetPass'>
+  <scroll-view scroll-y>
+    <view class='login-area-view'>
+      <view class='logo flex flex_ct flex_ac'>
+        <image class='circle' src='https://hatank.com/images/1.png'></image>
+        <text>每天一菜，多味生活</text>
+        <text>www.hatank.com</text>
+      </view>
+      <form class='login-form flex_ac' bindsubmit='vertifyPhone' name="login">
+        <view class='login-form-item flex flex_ac'> 
+          <button class='simulate-block iconfont phone-register'></button>
+          <input type='text' name="phone" value='{{phone}}' bindinput='phone' placeholder='请输入您注册时的手机号'></input>
+          <button class='sendCode' bindtap='sendCode' disabled='{{phoneS?false:true}}'>{{sendCodedTxt?sendCodedTxt:'发送'}}</button>
+        </view>
+        <view class='login-form-item flex flex_ac'> 
+          <button class='simulate-block iconfont code'></button>
+          <input type='text' name="code" value='{{code}}' bindinput='code' placeholder='6位短信验证码'></input>
+          <icon type='{{codeS?"success":"warn"}}' class='icon-tips'></icon>
+        </view>
+        <view class='btn logins clearfix'>
+            <button form-type='submit' disabled='{{!phoneF||!codeS}}' class='new fl btn-login'>验证手机号</button>
+            <text bindtap='toWhat' class='fl forgetPass'>密码验证</text>
+        </view>
+      </form>
+      <view class='reset-tips'>
+        <text class='bc'>温馨提示：</text>
+        <view class='bc reset-tips-content'>
+          修改手机号前，您可以通过验证已绑定的手机号；手机号不可用时，也可通过登录密码验证
+        </view>
+      </view> 
+    </view>
+  </scroll-view>
+</view>

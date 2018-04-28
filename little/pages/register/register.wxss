@@ -1,0 +1,17 @@
+ /* pages/register/register.wxss  */
+ @import '../login/login.wxss';
+.code::after{
+   content: '\e7fc';
+   color:#8B572A;
+   font-size: 80rpx;
+}
+.email::after{
+   content: '\e604';
+   color:#8B572A;
+   font-size: 80rpx;
+}
+.phone-register::after{
+  content: '\e629';
+  color:#8B572A;
+  font-size: 90rpx;
+ }

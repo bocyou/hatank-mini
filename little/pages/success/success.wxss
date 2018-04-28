@@ -1,0 +1,14 @@
+/* pages/success/success.wxss */
+.success{
+  padding: 50rpx;
+  flex-direction: column;
+}
+.success text{
+  font-size: 32rpx;
+  margin: 10rpx 0;
+}
+.success button{
+  width:200rpx;
+  font-size: 28rpx;
+  margin-top: 40rpx;
+}

@@ -1,0 +1,33 @@
+<!--pages/newPhone/byPass/byPass.wxml-->
+<!--pages/forgetPass/vertify/reset.wxml-->
+<view class='common-bg'>
+  <image src='https://hatank.com/images/common_bg.png'></image>
+</view>
+<view class='login-area resetPass'>
+  <scroll-view scroll-y>
+    <view class='login-area-view'>
+      <view class='logo flex flex_ct flex_ac'>
+        <image class='circle' src='https://hatank.com/images/1.png'></image>
+        <text>每天一菜，多味生活</text>
+        <text>www.hatank.com</text>
+      </view>
+      <form class='login-form flex_ac' bindsubmit='vertifyPass'>
+        <view class='login-form-item flex flex_ac'> 
+          <button class='simulate-block iconfont userPass'></button>
+          <input type='text' maxlength='20' data-password="pass" name="userPass" bindinput='userPass' password='true' placeholder='请输入您的密码'></input>
+          <icon type='{{userPassS?"success":"warn"}}' class='icon-tips'></icon>
+        </view>
+        <view class='btn logins clearfix'>
+          <button disabled='{{!userPassS}}' form-type='submit' class='new fl btn-login'>验证密码</button>
+          <text bindtap='toWhat' class='fl forgetPass'>手机号验证</text>
+        </view>
+      </form>
+      <view class='reset-tips'>
+        <text class='bc'>温馨提示：</text>
+        <view class='bc reset-tips-content'>
+          修改手机号前，您可以通过验证已绑定的手机号；手机号不可用时，也可通过登录密码验证
+        </view>
+      </view> 
+    </view>
+  </scroll-view> 
+</view>

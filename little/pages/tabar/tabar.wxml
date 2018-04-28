@@ -1,0 +1,21 @@
+<!--pages/tabar/tabar.wxml-->
+  <view class='tabar flex'>
+    <view class='tabar-list'>
+      <view bindtap='setActive' data-active="0" class='tabar-bg {{active==0?"active":""}} flex felx_ct flex_ac'>
+        <image src='../../icons/{{active==0?"home-active.png":"home-ori.png"}}'></image>
+        <text class='{{active==0?"active":""}}'>首页</text>
+      </view>
+    </view>
+    <view class='tabar-list'>
+      <view bindtap='setActive' data-active="1" class='tabar-bg {{active==1?"active":""}} flex felx_ct flex_ac'>
+        <image src='../../icons/{{active==1?"discovery-active.png":"discovery-ori.png"}}'></image>
+        <text class='{{active==1?"active":""}}'>发现</text>
+      </view>
+    </view>
+    <view class='tabar-list'>
+      <view bindtap='setActive' data-active="2" class='tabar-bg {{active==2?"active":""}} flex felx_ct flex_ac'>
+        <image src='../../icons/{{active==2?"user-active.png":"user-ori.png"}}'></image>
+        <text class='{{active==2?"active":""}}'>我</text>
+      </view>
+    </view>
+  </view>

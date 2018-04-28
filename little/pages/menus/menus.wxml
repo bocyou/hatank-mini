@@ -1,0 +1,12 @@
+<!--pages/menus/menus.wxml-->
+<view class='box'>
+  <text class='menus-title bc tc'>菜谱大全</text>
+  <view wx:for="{{menus}}" wx:key="_id" class='menus' wx:for-item="menuName" wx:for-index="menuIndex">
+    <view style='color:{{colors[menuIndex]}}' class='menus-header'>
+    <view style='background-color:{{colors[menuIndex]}}' class='left-line'></view>
+    {{menuName._id}}</view>
+    <view class='menus-content'>
+        <button wx:for="{{menuName.result}}" wx:key="this" data-id="{{childName._id}}" wx:for-item="childName" wx:for-index="childIndex" style='border:1px solid {{colors[menuIndex]}};color:{{colors[menuIndex]}}' class='menus-content-item fl' bindtap='queryCategory'>{{childName.title}}</button>
+    </view>
+  </view>
+</view>

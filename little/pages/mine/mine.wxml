@@ -1,0 +1,130 @@
+<!--pages/mine/mine.wxml-->
+<view class='mine'>
+  <view class='mine-banner'>
+    <image class='mine-banner-img' src='https://hatank.com/images/mine_banner.png'></image>
+    <view class='flex flex_ac base-info'>
+      <image class='user-img' src='{{userImg?userImg:"../../icons/user-ori.png"}}'></image>
+      <view class='userInfo'>
+        <text class='bc'>用户名：{{userName}}</text>
+        <text class='bc'>id：{{userId}}</text>
+      </view>
+      <navigator url='../settings/settings'>
+        <button class='simulate-block iconfont settings'></button>
+      </navigator>
+    </view>
+  </view>
+  <view class='mine-content'> 
+    <view class='mine-content-menu flex'>
+      <view class='mine-content-menu-item right-line {{active==0?"active":""}}'  bindtap='activeInforMenus' data-index='0'>
+        <text class='bc tc'>我的收藏</text>
+        <text class='bc tc'>{{cookiesLen}}</text>
+      </view>
+      <view class='mine-content-menu-item right-line {{active==1?"active":""}}'  bindtap='activeInforMenus' data-index='1'>
+        <text class='bc tc'>我的厨艺</text>
+        <text class='bc tc'>{{cooksLen}}</text>
+      </view>
+      <view class='mine-content-menu-item {{active==2?"active":""}}' bindtap='activeInforMenus' data-index='2'>
+        <text class='bc tc'>我的粉丝</text>
+        <text class='bc tc'>{{static.fans.length}}</text>
+      </view>
+    </view> 
+    <swiper current='{{thisIdx}}' bindchange='swiperTo' style="height:{{swiperH}}" >
+      <swiper-item style="height:{{swiperH}}" >
+        <scroll-view scroll-y style='height:100%;' enable-back-to-top="true" bindscrolltolower="reachCookiesBottom">
+          <view wx:if="{{noCookiesData}}" class="noMoreData iconfont flex flex_ac flex_ct gray">
+              <text>暂无数据</text>
+          </view>
+          <view wx:for="{{cookies}}" wx:key="this" class='swiper-item-content'>
+              <view class='del tc' bindtap='cancelCookie' data-cancel='{{item._id}}'>取消收藏</view>
+              <navigator url='../detail/detail?id={{item._id}}'>
+                  <image lazy-load="true" src='{{item.albums[0].bannerImgUrl==undefined?item.albums[0]:item.albums[0].bannerImgUrl}}'style='width:100%;height:480rpx;'></image>
+                <view class='swiper-item-content-bg'></view>
+                <view class='swiper-item-content-txt flex flex_ac flex_bt'>
+                  <view class='swiper-item-content-txt-detail'>
+                    <text class='title'>{{item.title}}</text>
+                    <view class='title-intro'>
+                      <text>{{item.scored}}分</text>
+                      <text>{{item.cookied}}收藏</text>
+                      <text>{{item.agreed}}人赞</text>
+                    </view>
+                  </view>
+                  <navigator url='../focus/focus?focusId={{item.userId}}'>
+                      <view class='focus-item-user flex flex_ac flex_ct flex_bt flex_col' wx:if="{{item.imgUrl&&item.nickName}}">
+                        <image src='{{item.imgUrl}}' style='margin:10rpx 0;width:66rpx;height:66rpx;border-radius:50%'></image>
+                        <text style='font-size:24rpx;'>{{item.nickName}}</text>
+                      </view>
+                  </navigator>
+                </view>
+              </navigator>
+            </view>
+          <view class="refresh-block flex flex_ct" wx:if="{{cookieLoading}}" style='margin:28rpx;'>
+            <image animation="{{refreshAnimation}}" src='../../icons/loading.png' style='width:20px;height:20px;'></image>
+          </view>
+            <text class='tc bc gray last' wx:if="{{cookieBottom&&!noCookiesData}}">-------已经到底了-------</text>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y style='height:100%;' enable-back-to-top="true" bindscrolltolower="reachCooksBottom">
+          <view wx:if="{{noCooksData}}" class="noMoreData iconfont flex flex_ac flex_ct gray">
+              <text>暂无数据</text>
+          </view>
+          <view wx:for="{{cooks}}" wx:key="this" class='swiper-item-content'>
+              <view class='del tc' bindtap='delCook' data-del='{{item._id}}'>删除</view>
+              <navigator url='../detail/detail?id={{item._id}}'>
+                  <image lazy-load="true" src='{{item.albums[0].bannerImgUrl==undefined?item.albums[0]:item.albums[0].bannerImgUrl}}' style='width:100%;height:480rpx;'></image>
+                <view class='swiper-item-content-bg'></view>
+                <view class='swiper-item-content-txt flex flex_ac flex_bt'>
+                  <view class='swiper-item-content-txt-detail'>
+                    <text class='title'>{{item.title}}</text>
+                    <view class='title-intro'>
+                      <text>{{item.scored}}分</text>
+                      <text>{{item.cookied}}收藏</text>
+                       <text>{{item.agreed}}人赞</text>
+                    </view>
+                  </view>
+                  <navigator url='../focus/focus?focusId={{item.userId}}'>
+                      <view class='focus-item-user flex flex_ac flex_ct flex_bt flex_col' wx:if="{{item.imgUrl&&item.nickName}}">
+                        <image src='{{item.imgUrl}}' style='margin:10rpx 0;width:66rpx;height:66rpx;border-radius:50%'></image>
+                        <text style='font-size:24rpx;'>{{item.nickName}}</text>
+                      </view>
+                  </navigator>
+                </view>
+              </navigator>
+          </view>
+          <view class="refresh-block flex flex_ct" wx:if="{{cookLoading}}" style='margin:28rpx;'>
+            <image animation="{{refreshAnimation}}" src='../../icons/loading.png' style='width:20px;height:20px;'></image>
+          </view>
+          <navigator style='margin:30rpx' url='../new/new'>
+            <button class='new'>新建菜单</button>
+          </navigator>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y style='height:100%;' enable-back-to-top="true" bindscrolltolower="reachFansBottom">
+          <view wx:if="{{noFansData}}" class="noMoreData iconfont flex flex_ac flex_ct gray">
+              <text>暂无数据</text>
+          </view>
+          <view wx:for="{{fans}}" wx:key="this" class='swiper-item-content fans'>
+              <navigator url='../focus/focus?focusId={{item._id}}&nickName={{item.nickName}}&&userImg={{item.img}}'>
+                <view class='fans-item flex flex_ac'>
+                <image class='fans-item-user' src='{{item.img?item.img:"../../icons/user-ori.png"}}'></image>
+                <view class='fans-item-detail'>
+                  <text class='bc fans-item-detail-title'>用户名：{{item.nickName}}</text>
+                  <text class='bc'>id：{{item._id}}</text>
+                  <text class='bc'>Ta的厨艺：{{item.cooks}}个</text>
+                  <text class='bc'>Ta的粉丝：{{item.fans.length}}个</text>
+                  <text class='bc'>注册日期：{{item.createTime}}</text>
+                </view>
+                <button class='simulate-block iconfont arrow-right'></button>
+              </view>
+              </navigator>
+          </view>
+          <view class="refresh-block flex flex_ct" wx:if="{{fanLoading}}" style='margin:28rpx;'>
+            <image animation="{{refreshAnimation}}" src='../../icons/loading.png' style='width:20px;height:20px;'></image>
+          </view>
+            <text class='tc bc gray last' wx:if="{{fansBottom&&!noFansData}}">-------已经到底了-------</text>
+        </scroll-view>
+     </swiper-item> 
+    </swiper>
+  </view>
+</view>

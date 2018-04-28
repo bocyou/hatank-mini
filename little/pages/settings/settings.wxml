@@ -1,0 +1,50 @@
+<!--pages/settings/settings.wxml-->
+<view class='settings'>
+  <navigator url='../newUserName/newUserName'>
+    <view class='settings-item flex flex_ac'>
+      <label class='label'>用户名</label>
+      <view class='label-val flex flex_ac flex_ct'>
+        <text>{{nickName}}</text>
+        <button class='simulate-block iconfont arrow-right gray'></button>
+      </view>
+    </view>
+  </navigator>
+  <navigator url='{{password?"../newPhone/byPass/byPass?type=Pass":"../register/register"}}'>
+    <view class='settings-item flex flex_ac'>
+      <label class='label'>密码</label>
+      <view class="flex flex_ac flex_ct">
+        <text>{{password?'已设置':'未设置'}}</text>
+        <button class='simulate-block iconfont arrow-right gray'></button>
+      </view>
+    </view>
+  </navigator>
+  <navigator url='{{phone?"../newPhone/oriPhone/oriPhone?type=Phone":"../register/register"}}'>
+    <view class='settings-item flex flex_ac'>
+      <label class='label'>手机号</label>
+      <view class="flex flex_ac flex_ct">
+        <text>{{phone?phone:'未设置'}}</text>
+        <button class='simulate-block iconfont arrow-right gray'></button>
+      </view>
+    </view>
+  </navigator>
+  <view class='settings-item flex flex_ac' bindtap='updateIcon'>
+    <label class='label'>修改头像</label>
+    <view class="flex flex_ac flex_ct">
+      <image class='user-img' src='{{img?img:"../../icons/user-ori.png"}}'></image>
+      <button class='simulate-block iconfont arrow-right gray'></button>
+    </view>
+  </view>
+  <view class='settings-item flex flex_ac' bindtap='updateEmail'>
+    <label class='label'>邮箱</label>
+    <view class="flex flex_ac flex_ct">
+      <text>{{email?email:'未设置'}}</text>
+       <button class='simulate-block iconfont arrow-right gray'></button> 
+    </view>
+  </view>
+  <view wx:if="{{comment}}" class='settings-item flex flex_ac'>
+    <label class='label'>我的评论</label>
+    <view class="flex flex_ac flex_ct">
+      <button class='simulate-block iconfont arrow-right gray'></button>
+    </view>
+  </view>
+</view>

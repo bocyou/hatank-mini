@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/main/main",
+    "pages/phone/phone",
+    "pages/forgetPass/vertify/vertify",
+    "pages/forgetPass/reset/reset",
+    "pages/register/register",
+    "pages/login/login",
+    "pages/mine/mine",
+    "pages/settings/settings",
+    "pages/index/index",
+    "pages/discovery/discovery",
+    "pages/list/list",
+    "pages/focus/focus",
+    "pages/menus/menus",
+    "pages/detail/detail",
+    "pages/new/new",
+    "pages/tabar/tabar",
+    "pages/comments/comments",
+    "pages/success/success",
+    "pages/newPhone/oriPhone/oriPhone",
+    "pages/newPhone/byPass/byPass",
+    "pages/newPhone/newPass/newPass",
+    "pages/newPhone/newPhone/newPhone",
+    "pages/newUserName/newUserName",
+    "pages/newEmail/newEmail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FCFCFC",
+    "navigationBarTitleText": "菜肴ing",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "text": "首页",
+        "iconPath": "icons/home-ori.png",
+        "selectedIconPath": "icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/discovery/discovery",
+        "text": "发现",
+        "iconPath": "icons/discovery-ori.png",
+        "selectedIconPath": "icons/discovery-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我",
+        "iconPath": "icons/user-ori.png",
+        "selectedIconPath": "icons/user-active.png"
+      }
+    ],
+    "color": "#9B9B9B",
+    "selectedColor": "#8B572A"
+  }
+}

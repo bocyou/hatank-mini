@@ -1,0 +1,40 @@
+/* pages/tabar/tabar.wxss */
+page{
+  padding-bottom: 114rpx;
+}
+.tabar{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 4rpx 34rpx;
+  box-sizing: border-box;
+  height: 115rpx;
+  background:rgba(252, 252, 252, .72);
+  border-top:1px solid rgba(74, 74, 74, .1);
+}
+.tabar-list{
+  flex-grow: 1;
+}
+.tabar-list image{
+  width: 50rpx;
+  height: 50rpx;
+}
+.tabar-list text{
+  font-size: 24rpx;
+  color: #9B9B9B;
+}
+.tabar-list text.active{
+  color: #8B572A;
+}
+.tabar-list>view{
+  flex-direction: column;
+}
+.tabar-bg{
+  margin-top: 6rpx;
+  padding:4rpx 0;
+}
+.tabar-bg.active{
+  background: #E9E9E9;
+  border-radius: 10rpx;
+}

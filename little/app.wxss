@@ -1,0 +1,243 @@
+/**app.wxss**/
+@import 'fonts/iconfont.wxss';
+/*--通用样式--*/
+input,view,text,label,button{
+  font-size: 28rpx;
+}
+.fl{
+  float: left;
+}
+.rl{
+  float: right;
+}
+.clearfix{
+  overflow: hidden;
+}
+.auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+.clearfix:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.flex{
+  display: flex;
+}
+.flex_ct{
+  justify-content: center;
+}
+.flex_sb{
+  justify-content: space-between;
+}
+.flex_sa{
+  justify-content: space-around;
+}
+.flex_ac{
+  align-items: center;
+}
+.bc{
+  display: block;
+}
+.bdt{
+  border-top: rgba(74, 74, 74, .3);
+}
+.bdd{
+   border-bottom: 1px solid #eee;
+}
+.tc{
+  text-align: center;
+} 
+.last{
+  line-height: 90rpx;
+}
+.gray{
+  color: #9B9B9B;
+}
+.change{
+  margin: 16rpx auto 32rpx;
+  width: 184rpx;
+  height: 68rpx;
+  border-radius: 100rpx;
+  background: rgba(201, 201, 201, 1);
+  color: white;
+}
+.change:active{
+  background: rgba(201, 201, 201, .72);
+}
+.simulate-block{
+  width:36rpx;
+  height:66rpx; 
+  line-height:122rpx;
+  background: transparent;
+  font-size:70rpx;
+ }
+ .quick-simulate-block{
+  height:50rpx;
+ }
+ .simulate-block::after{
+  border: none;
+}
+/*--登录，注册，密码重置--*/
+.new{
+  width: 200rpx;
+  line-height: 68rpx;
+  color: white;
+  background: rgba(139, 87, 42, .72);
+  border-radius: 100px;
+  margin: 26rpx auto;
+}
+.new::after{
+  border: none;
+}
+.common-bg,.common-bg image,page{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.login-area{
+  color: white;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.login-area scroll-view{
+  height: calc(100vh); 
+  box-sizing: border-box;
+}
+.login-area-view{
+  padding: 56rpx 70rpx 0 70rpx;
+  box-sizing: border-box;
+}
+.logo{
+  width: 590rpx;
+  flex-direction: column;
+  font-size: 36rpx;
+  line-height:36rpx;
+}
+.icon-tips{
+  margin-right: -16rpx;
+}
+.logo .circle{
+  width: 166rpx;
+  height: 166rpx;
+  margin:8rpx 0 14rpx;
+  border-radius: 50%;
+}
+.login-form{
+  width: 600rpx;
+  display: block;
+  flex-direction: column;
+  margin-top: 60rpx;
+}
+.login-form-item{
+  height: 90rpx;
+  background: white;
+  padding: 24rpx;
+  box-sizing: border-box;
+  border-radius: 100rpx;
+  margin-bottom: 20rpx;
+  color: gray;
+  overflow: hidden;
+}
+.common-icon-size{
+  width: 46rpx;
+  height: 46rpx;
+  margin-right: 32rpx;
+}
+.login-form-item input{
+  flex-grow: 1;
+  padding-left: 8rpx;
+}
+.new{
+  width: 250rpx;
+  line-height: 72rpx;
+  margin: 16rpx auto 30rpx;
+  background: rgba(139, 87, 42,1);
+}
+.btn{
+  padding-left: 176rpx;
+}
+.logins{
+  padding-top: 20rpx;
+}
+.btn-register{
+  background: #868487;
+}
+.forgetPass{
+  display: inline-block;
+  padding-top: 32rpx; 
+  margin-left: 14rpx;
+}
+.quick-login{
+  padding-top: 20rpx;
+  width: 376rpx;
+  margin-left:116rpx;
+}
+.quick-login image{
+  margin: 0;
+}
+.quick-login text{
+  width:140rpx;
+  margin-top: 10rpx;
+}
+.sendCode{
+  line-height: 90rpx;
+  border-radius: 0 100rpx 100rpx 0;
+  width: 124rpx;
+  margin-right: -38rpx;
+  background: #8B572A;
+  color: white;
+}
+.sendCode::after{
+  border: none;
+}
+.sendCode:active,.new:active{
+  background: rgba(139, 87, 42, .72);
+}
+.search-active::after{
+  content: '\e60d';
+  color: #6051F5;
+}
+.arrow-right::after{
+  content: '\e6f5';
+}
+.cookies::after{
+  content: '\e602';
+  color: #000;
+}
+.share::after{
+  content: '\e640';
+  color: #d81e06
+}
+.agree::after{
+  content: '\e62c';
+  color: #000
+}
+.comment-arrow::after{
+  font-size: 64rpx;
+  margin-top: 4rpx;
+}
+.scroll-view-item.more{
+  width: 100rpx;
+}
+ .phone-login,.user-login{
+   margin-top: 70rpx;
+   font-size:40rpx;
+ }
+ .noMoreData{
+  flex-direction: column;
+  padding: 50rpx;
+  font-size: 30rpx;
+}
+.noMoreData:before{
+  content: '\e639';
+  font-size: 80rpx;
+}
+.flex_bt{
+  justify-content: space-between
+}
+.flex_col{
+  flex-direction: column
+}

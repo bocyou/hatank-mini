@@ -1,0 +1,206 @@
+<!--pages/new/new.wxml-->
+<form bindsubmit='previewMenu'>
+  <view class='{{previewM?"":"scrollForm"}}'>
+    <view style='line-height:72rpx;font-size:32rpx' class='tc'>美食相册</view>
+    <block>
+      <view class=''>
+          <view class='new-header-content flex flex_ac new-padding'>
+          <view class='new-header-content-header flex flex_ac flex_ct' bindtap='chooseImg'>
+            <button class='simulate-block iconfont add' bindtap='add'></button>
+            <text class='bc'>选择照片</text>
+          </view>
+          <view class='new-header-content-info'>
+            <view class='flex flex_ac info'>
+              <text class='title'>标题:</text>
+              <input class='bc title-info bdd' maxlength='32' auto-height='true' value='{{banner.title}}' placeholder='此处填写该图片标题(最多32字)' bindinput='getTitle'/>
+            </view>
+            <view class='flex flex_ac info'>
+              <text class='title'>描述:</text>
+              <input class='bc title-info' maxlength='120' auto-height='true' value='{{banner.titleInfo}}'  placeholder='此处填写图片的描述信息(最多120字)' bindinput='getTitleInfo'/>
+            </view>
+          </view>
+        </view>
+        <view class='new-header flex'>
+          <swiper indicator-dots="{{true}}"  current="{{swiperActiveIndex}}" style='width:100%;height:480rpx;position:relative' bindchange='swiperBannersChange'>
+              <swiper-item wx:for="{{banners}}" wx:key="this" wx:for-item="item"> 
+                  <view class='new-header-info'>
+                    <image src='{{item.bannerImgUrl}}'></image>
+                    <text wx:if="{{banners.length>1?true:false}}" bindtap="delBanner" class='banner-del tc' >删除</text>
+                    <view wx:if="{{banner.title||banner.titleInfo}}">
+                        <text class='bc title'>{{item.title}}</text>
+                        <text class='bc subtitle'>{{item.titleInfo}}</text>
+                    </view>
+                  </view>
+              </swiper-item>
+          </swiper>
+        </view>
+        <text class='tc bc result-show gray'>产品效果图</text>
+        <view class='flex flex_ct'>
+                <button class='new' style='background:gray' bindtap='addAntherBanner'>继续添加</button>
+        </view>
+      </view>
+    </block>
+    <block>
+      <view class='new-header-content new-padding caipu bdd'>
+      <view class='flex flex_ac info'>
+        <text class='title'>菜谱名字:</text>
+        <input class='bc title-info bdd' maxlength='32' name="title" auto-height='true' placeholder='此处填写该菜谱名字(最多32字)'/>
+      </view>
+      <view class='flex flex_ac info'>
+        <text class='title'>菜谱简介:</text>
+        <input class='bc title-info bdd' name="imtro" auto-height='true' placeholder='此处为该菜谱对应的简述(最多120字)'/>
+      </view>
+      <view class='flex flex_ac info'>
+        <text class='title'>菜谱标签:</text>
+        <input class='bc title-info bdd' name="tags" auto-height='true' placeholder='此处为该菜谱对应的简述(最多120字)'/>
+      </view>
+      <view class='flex flex_ac info'>
+        <text class='title'>菜谱分类:</text>
+        <picker style='margin-left:120rpx' mode="multiSelector" class='bc title-info bdd' bindchange='getCategory' bindcolumnchange="getColumnData" range='{{categorys}}' value='{{categoryIndexArr}}' range-key='title'>
+          <view class='gray'>{{categorys[0][categoryIndexArr[0]].title}} - {{categorys[1][categoryIndexArr[1]].title}}</view>
+        </picker>
+        <button class='simulate-block iconfont arrow-right gray'></button>
+      </view>
+      <view class='flex info materia'>
+        <text class='title'>食材明细:</text>
+          <view class='new-header-content-info'>
+            <view class='flex' wx:for="{{materias}}" wx:key="this">
+              <input class='bc title-info bdd' auto-height='true' data-index='{{index}}' placeholder='材料名(如:猪肉)' bindinput='getMateriaName'/>
+              <input class='bc title-info bdd' auto-height='true' data-index='{{index}}' placeholder='用量(如:100g)' bindinput='getMateriaWeight'/>
+              <button wx:if="{{index}}" class='del' bindtap='deleteCurrMateria'>删除</button>
+            </view>
+          </view>
+        </view>
+        <view class='flex flex_ct bc'>
+            <button class='new' style='background:gray' bindtap='addMateria'>添加食材</button>
+          </view>
+      </view>
+    </block>
+    <block>
+      <text class='bc steps tc'>菜谱制作步骤</text>
+      <view  class='{{index==steps.length-1?"bdd":""}}'>
+          <view class='new-header-content flex flex_ac new-padding bdd'>
+            <view class='new-header-content-header flex flex_ac flex_ct' bindtap='chooseStepsImg'>
+              <button class='simulate-block iconfont add' bindtap='add'></button>
+              <text class='bc'>选择照片</text>
+            </view>
+            <view class='new-header-content-info'>
+              <view class='flex flex_ac info'>
+                <text class='title' style='width:170rpx;'>步骤名字:</text>
+                <input class='bc title-info bdd' auto-height='true' placeholder='此处填写步骤名字' value='{{step.stepName}}'  bindinput='getStepName'/>
+              </view>
+              <view class='flex flex_ac info'>
+                <text class='title' style='width:170rpx;'>步骤内容:</text>
+                <input class='bc title-info' auto-height='true' placeholder='此处填写步骤内容' value='{{step.step}}'  bindinput='getStepContent'/>
+              </view>
+            </view>
+          </view>
+          <view class='new-header flex'>
+            <swiper indicator-dots="{{true}}"  current="{{swiperStepActiveIndex}}" style='width:100%;height:480rpx;position:relative' bindchange='swiperStepBannersChange'>
+                <swiper-item wx:for="{{steps}}" wx:key="this" wx:for-item="item"> 
+                    <view class='new-header-info'>
+                      <image src='{{item.img}}'></image>
+                      <view wx:if="{{step.stepName||step.step}}">
+                          <text class='bc title'>{{item.stepName}}</text>
+                          <text class='bc subtitle'>{{item.step}}</text>
+                      </view>
+                    </view>
+                </swiper-item>
+            </swiper>
+          </view>
+          <text class='tc bc result-show gray'>产品效果图</text>
+          <view class='clearfix flex flex_ct' style='padding:20rpx 170rpx;'>
+            <button class='new fl' style='margin:0 20rpx 20rpx 20rpx;background:gray' bindtap='addAntherStep'>添加步骤</button>
+            <button wx:if="{{index==steps.length-1}}" class='new fl' style='margin:0;background:#D0011B' wx:if="{{steps.length>1?true:false}}" bindtap="delStep">删除步骤</button>
+          </view>
+      </view>
+    </block>
+    <block>
+      <text class='bc steps tc'>温馨提示</text>
+      <view class='clearfix' style='width:100%;padding:0 16rpx;box-sizing:border-box'>
+        <view wx:for="{{tips}}" wx:key="this" style='padding-right:130rpx;position:relative'>
+              <button style='display:inline-block;position:absolute;right:0;top:26rpx' wx:if="{{tips.length>1}}" data-index="{{index}}" class='del' bindtap='delTip'>删除</button>
+          <view class='flex flex_ac info'>
+              <text class='title' style='width:190rpx;'>提示标题{{index+1}}:</text>
+              <input class='bc title-info bdd' value='{{item.title}}' auto-height='true' data-index='{{index}}' placeholder='此处填写此处为提示标题' bindinput='getTipTitle'/>
+          </view>
+          <view class='flex flex_ac info'>
+            <text class='title' style='width:170rpx;'>提示内容{{index+1}}:</text>
+            <input class='bc title-info bdd' auto-height='true' value='{{item.content}}' data-index='{{index}}' placeholder='此处填写温馨提示标题对应的内容' bindinput='getTipContent'/>
+          </view>
+        </view>
+      </view>
+      <view class='flex flex_ct bc'>
+          <button class='new' style='background:gray' bindtap='addTip'>继续添加</button>
+      </view>
+      <button class='new' type='button' form-type='submit' style='margin-left:290rpx;margin-top:50rpx;'>预览菜谱</button>
+    </block>
+  </view>
+  <view class='mask' wx:if="{{previewM}}">
+    <view class='detail'>
+        <view class='new-header flex'>
+          <swiper indicator-dots="{{true}}" style='width:100%;height:480rpx;position:relative'>
+              <swiper-item wx:for="{{formData.albums}}" wx:key="this" wx:for-item="item"> 
+                  <view class='new-header-info'>
+                       <image class='detail-banner'  src='{{formData.albums[0].bannerImgUrl==undefined?item:item.bannerImgUrl}}'></image>
+                      <view wx:if="{{formData.albums[0].bannerImgUrl!=undefined&&(item.title||item.titleInfo)}}">
+                          <text class='bc title' wx:if="{{item.title}}">{{item.title}}</text>
+                          <text class='bc subtitle' wx:if="{{item.titleInfo}}">{{item.titleInfo}}</text>
+                      </view>
+                  </view>
+              </swiper-item>
+          </swiper>
+        </view>
+      <view class='detail-content'>
+        <view class='detail-header tc' style='padding:10rpx;'>
+          <text class='title bc'>{{formData.title}}</text>
+          <text class='gray'>{{formData.scored}}分</text> 
+        </view>
+        <text class='gray detail-intro'>{{formData.imtro}}</text>
+        <text class='detail-materia bc tc'>材料准备阶段</text>
+        <view wx:for="{{materias}}" wx:key="this" class='flex flex_sb detail-materia-item darkgray'>
+          <text class='detail-materia-materia'>{{item.materiaName}}</text>
+          <text class='detail-materia-weight'>{{item.materiaWeight}}</text>
+        </view>
+        <view class='detail-steps' wx:for="{{formData.steps}}" wx:key="this">
+          <text class='bc'>{{index+1}}. {{item.stepName}}</text>
+          <text class='detail-step-content darkgray bc'>{{item.step}}</text>
+          <image style='margin-left:36rpx' src='{{item.img}}'></image>
+        </view>
+        <block wx:if="{{tips}}">
+          <text class='gray bc tc' style='margin:20rpx 0 16rpx;'>------------温馨提示------------</text> 
+          <view class='' wx:for="{{tips}}">
+              <text class='tips gray bc'>{{item.title}}</text>
+             <text class='tips gray bc'>{{item.content}}</text>
+          </view>
+        </block>
+        <view class='flex flex_ac flex_ct' style='padding-top:14rpx'>
+          <view class='menu-item flex flex_ac'>      
+            <button class='simulate-block iconfont cookies gray'></button>
+            <button disabled='{{cookied}}' class='btn-detail-click' bindtap='cookied'>
+                <text wx:if="{{!cookied}}">收藏({{formData.cookied}})</text>
+                <text wx:if="{{cookied}}">已收藏</text>
+            </button>
+          </view>
+          <view class='menu-item flex flex_ac'>      
+            <button class='simulate-block iconfont agree gray'></button>
+            <button disabled='{{agreed}}' class='btn-detail-click' bindtap='agreed'>
+                <text wx:if="{{!agreed}}">赞({{formData.agreed}})</text>
+                <text wx:if="{{agreed}}">已点赞</text>
+            </button>
+          </view>
+        </view>
+        <view class='tags' style='padding:20rpx'>
+          <text>标签：</text>
+          <text class='gray' style='font-size:26rpx'>{{formData.tags}}</text>
+        </view>
+        <view class='bc gray tip'>当前菜谱属于<navigator url='../list/list?from=detail&searchValue={{detail.topName}}' style='color:#000;display:inline-block;font-size:28rpx'>{{formData.topName}}</navigator>分类</view>
+        <text class='bc gray tip' style='margin-bottom:10rpx;'>本教程的数据和图片均来源于网络</text>
+      </view>
+      <view class="flex flex_ct flex_ac" style='padding-top:40rpx;'>
+          <button type="button" class='publish' bindtap="publish">发布菜谱</button>
+          <button type="button" class='cancel' bindtap="continueUpdate">继续修改</button>
+      </view>
+    </view>
+  </view>
+</form>

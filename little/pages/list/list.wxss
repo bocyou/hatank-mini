@@ -1,0 +1,118 @@
+/* pages/list/list.wxss */
+.list{
+  margin:30rpx 0;
+}
+.list .fork-search{
+  height:90rpx;
+}
+.list view{
+  width: 534rpx;
+  height: 72rpx;
+  font-size: 24rpx;
+  padding:18rpx 25rpx;
+  box-sizing: border-box;
+  border: 1px solid #9B9B9B;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, .5);
+  border-radius: 180rpx;
+  background: white;
+}
+.list input{
+  flex-grow: 1;
+  font-size: 26rpx;
+}
+.search-icon{
+  margin-left:20rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+.selPicker{
+  width:110rpx;
+  font-size: 26rpx;
+  margin-right: 4rpx;
+}
+.sel::after{
+  content: '\e61c';
+  font-size: 24rpx;
+  margin-left: 4rpx;
+}
+.list-menu{
+  position: relative;
+  justify-content: space-around;
+  height: 80rpx;
+  border:solid rgba(151, 151, 151, .2);
+  border-width:  1px 0 1px 0;
+}
+.list-menu-item{
+  width: 160rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+}
+.list-menu-item.active{
+  color: #8B572A;
+}
+.slide-line{
+  width: 130rpx;
+  height:2px;
+  background: #8B572A;
+  position: absolute;
+  bottom: 0;
+  transition: all .3s;
+}
+swiper{
+  height: 100%;
+}
+.list-content{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  top: 210rpx;
+  -webkit-overflow-scrolling: touch;
+}
+.topic{
+  height: 100%;
+  overflow-y: auto;
+}
+.topic-item{
+  padding: 40rpx 20rpx;
+  border-bottom: 1px solid rgba(151, 151, 151, .1);
+}
+.topic-item image{
+  width: 160rpx;
+  height: 125rpx;
+  margin-right: 24rpx;
+}
+.topic-item-detail{
+  position: relative;
+  padding: 0 32rpx 0 12rpx;
+  width: 500rpx;
+}
+.topic-item-detail .info{
+  text-indent:12rpx;
+  font-size: 26rpx;
+  color: #4A4A4A;
+  padding: 10rpx 16rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.browser,.cookie,.score{
+  font-size: 26rpx;
+  color: #111;
+  padding: 0 10rpx;
+}
+.topic-item-detail .arrow-right{
+  position: absolute;
+  right: -32rpx;
+  top:50%;
+  transform:translate(-50%);
+}
+.topic-item-detail .userIcon{
+  width: 32rpx;
+  height: 32rpx; 
+}
+.topic-item-detail .user{
+  padding: 6rpx;
+}
+.topic-item-detail .nickName{
+  font-size: 26rpx;
+}
